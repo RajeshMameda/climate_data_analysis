@@ -1,0 +1,25 @@
+Cloud Setup and Configuration
+
+The pipeline uses the input folder as a local simulation of a cloud-storage landing location. The supplied addresses_sample.csv file is placed in the input folder. In a production AWS environment, the input could be stored in an S3 path such as s3://address-pipeline/incoming/addresses_YYYYMMDD.csv and accessed using boto3.
+
+Apache Airflow schedules and runs the pipeline every day at 2:00 AM. PostgreSQL with the PostGIS extension is used as the destination database. Valid address records are inserted or updated in the current_addresses table.
+
+The database connection is provided through the DATABASE_URL environment variable instead of being written directly in the source code. In a production environment, database credentials should be stored in an Airflow Connection, AWS Secrets Manager, or another protected secrets service. AWS credentials should be provided through an IAM role or the standard AWS credential configuration and should never be committed to the project.
+
+Local configuration:
+
+CAPSTONE_PROJECT_DIR=$HOME/geospatial-capstone
+CAPSTONE_INPUT_FILE=$HOME/geospatial-capstone/input/addresses_sample.csv
+CAPSTONE_OUTPUT_DIR=$HOME/geospatial-capstone/output
+CAPSTONE_REJECTED_DIR=$HOME/geospatial-capstone/rejected
+CAPSTONE_ALERTS_DIR=$HOME/geospatial-capstone/alerts
+CAPSTONE_LOGS_DIR=$HOME/geospatial-capstone/logs
+DATABASE_URL=postgresql+psycopg2://<DB_USER>:<DB_PASSWORD>@<DB_HOST>:<DB_PORT>/<DB_NAME>
+
+Replace each placeholder with your own values. Do not commit real credentials to the repository. The pipeline reads DATABASE_URL from the environment and has no fallback default, so the run fails fast if it is not configured.
+
+The local PostGIS instance runs in Docker and is published on host port 5434, because ports 5432 and 5433 are already used by other local PostgreSQL servers on this machine:
+
+docker run --name capstone-postgis -e POSTGRES_DB=geospatial -e POSTGRES_USER=<DB_USER> -e POSTGRES_PASSWORD=<DB_PASSWORD> -p 5434:5432 -d imresamu/postgis:16-3.4
+
+The imresamu/postgis image is used instead of postgis/postgis because the latter does not publish linux/arm64 manifests for Apple Silicon.

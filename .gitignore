@@ -1,0 +1,25 @@
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets - never commit real credentials
+.env
+*.pem
+
+# Pipeline run artifacts (regenerated on every run)
+output/
+rejected/
+logs/
+alerts/

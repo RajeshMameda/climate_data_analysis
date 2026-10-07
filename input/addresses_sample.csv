@@ -1,0 +1,18 @@
+address_id,street_number,street_name,city,state,zip,latitude,longitude
+1001,125,Oak St,Riverdale,California,90210,34.0712,-118.4021
+1002,88,Maple Ave,Riverdale,CA,90211,34.0730,-118.3990
+1003,14,Cedar Rd,Hillview,california,94016,37.7081,-122.4852
+1004,501,Lake Dr,Northgate,CA,94103,37.7738,-122.4090
+1005,77,Elm St,Northgate,California,94107,37.7654,-122.3951
+1006,200,Main St,Valewood,TX,73301,30.2667,-97.7333
+1007,10,Pine Ln,Valewood,TX,73344,30.2701,-97.7404
+1008,45,Birch Blvd,Fairmont,Florida,33101,25.7751,-80.2105
+1009,9,River Rd,Fairmont,FL,33109,25.7619,-80.1918
+1010,300,Grant Ave,Bay City,New York,10001,40.7484,-73.9857
+1011,401,Harbor Way,Bay City,NY,10018,40.7549,-73.9840
+,55,MissingId St,Riverdale,CA,90210,34.0700,-118.4000
+1012,20,NoCoord Ave,Riverdale,CA,90210,,-118.3900
+1013,900,BadLat Rd,Hillview,CA,94016,65.0000,-122.4800
+1014,901,BadLon Rd,Hillview,CA,94016,37.7000,-150.0000
+1002,99,Duplicate Ave,Riverdale,CA,90211,34.0800,-118.4100
+1015,  120  ,  Spacey St  ,Northgate, california ,94103,37.7700,-122.4100
